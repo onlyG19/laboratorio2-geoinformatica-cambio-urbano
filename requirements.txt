@@ -1,0 +1,30 @@
+# Core Geospatial
+geopandas
+shapely
+pyproj
+rasterio
+rasterstats
+fiona
+osmnx
+pandas<2.2.0
+numpy<2.0.0
+scikit-learn
+matplotlib
+seaborn
+plotly
+folium
+streamlit
+streamlit-folium
+python-dotenv
+tqdm
+
+# Remote Sensing Specific (Laboratory 2)
+earthengine-api
+geemap
+pystac-client
+stackstac
+rioxarray
+xarray
+scikit-image
+opencv-python-headless
+odc-stac

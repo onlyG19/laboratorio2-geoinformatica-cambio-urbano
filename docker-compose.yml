@@ -1,0 +1,48 @@
+services:
+  db_lab2:
+    image: postgis/postgis:15-3.3
+    container_name: postgis_lab2
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-geodata_lab2}
+      - POSTGRES_USER=${POSTGRES_USER:-geouser}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-geopass}
+    ports:
+      - "${POSTGRES_PORT_LAB2:-5433}:5432"
+    volumes:
+      - postgres_data_lab2:/var/lib/postgresql/data
+
+  jupyter_lab2:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: jupyter_lab2
+    ports:
+      - "${JUPYTER_PORT_LAB2:-8889}:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
+      - ./outputs:/home/jovyan/outputs
+      - ./scripts:/home/jovyan/scripts
+      - ./docs:/home/jovyan/docs
+    environment:
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-lab2}
+    depends_on:
+      - db_lab2
+
+  streamlit_lab2:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: streamlit_lab2
+    command: streamlit run /home/jovyan/app/app.py
+    ports:
+      - "${STREAMLIT_PORT_LAB2:-8502}:8501"
+    volumes:
+      - ./app:/home/jovyan/app
+      - ./data:/home/jovyan/data
+      - ./outputs:/home/jovyan/outputs
+    depends_on:
+      - db_lab2
+
+volumes:
+  postgres_data_lab2:

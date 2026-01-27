@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Datos (Archivos pesados)
+data/raw/*.zip
+data/raw/*.SAFE
+data/processed/*.tif
+data/processed/*.csv
+outputs/figures/*.gif
+outputs/figures/*.png
+
+# IDEs
+.vscode/
+.idea/
+data/changes/*.tif
