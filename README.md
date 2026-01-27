@@ -1,34 +1,79 @@
-# Laboratorio 2: Monitoreo de Cambio Urbano en San Bernardo
+# 🛰️ Monitoreo de Cambio Urbano en San Bernardo (2016-2026)
 
-Este proyecto implementa un flujo completo de teledetección para analizar la expansión urbana en San Bernardo, Chile, durante el periodo 2016-2026 utilizando imágenes de **Sentinel-2**.
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
+[![Sentinel-2](https://img.shields.io/badge/Satellite-Sentinel--2-green.svg)](https://sentinel.esa.int/web/sentinel/missions/sentinel-2)
+[![Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-ff4b4b.svg)](https://streamlit.io/)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)](https://www.docker.com/)
 
-## 🚀 Estructura del Proyecto
+Este repositorio contiene un flujo de trabajo geoinformático avanzado para detectar, cuantificar y visualizar la expansión urbana en la comuna de **San Bernardo, Chile**. Utilizando imágenes multiespectrales de **Sentinel-2 L2A**, analizamos una década de transformaciones espaciales (2016-2026) con una resolución de 10 metros.
 
-*   `notebooks/`: Flujo paso a paso (Descarga, Procesamiento, Detección de Cambios, Análisis Zonal).
-*   `app/`: Dashboard interactivo en Streamlit.
-*   `scripts/`: Funciones modulares para descarga y cálculo de índices espectrales.
-*   `data/`: Almacenamiento de datos crudos (ZIP), procesados (TIF) y vectoriales (GPKG).
+---
 
-## 🛠️ Requisitos e Instalación
+## 🚀 Arquitectura del Proyecto
 
-Asegúrate de tener Docker instalado para correr el entorno de desarrollo:
+El proyecto está organizado de forma modular para permitir tanto la ejecución guiada (Notebooks) como el procesamiento masivo (Scripts):
 
-```bash
-docker-compose up -d
-```
+*   📂 `notebooks/`: Pipeline paso a paso desde la búsqueda STAC hasta el análisis zonal.
+*   📂 `app/`: Código fuente del Dashboard interactivo.
+*   📂 `scripts/`: Módulos de procesamiento (cálculo de índices, detección de cambios, generador de GIFs).
+*   📂 `data/`:
+    *   `raw/`: Imágenes originales (ZIP).
+    *   `processed/`: Índices espectrales (GeoTIFF) y estadísticas (CSV).
+    *   `vector/`: Límites municipales y grillas de análisis (GeoPackage).
+*   📂 `outputs/`: Figuras, animaciones temporales y resultados finales.
 
-## 📊 Ejecución de la Entrega Final
+---
 
-Para ver los resultados finales de forma interactiva y descargar las estadísticas:
+## 🛠️ Instalación y Requisitos
 
-1.  Asegúrate de haber ejecutado los Notebooks 02 y 04 completamente.
-2.  Accede al dashboard en tu navegador:
-    *   **URL:** [http://localhost:8501](http://localhost:8501)
+La forma más sencilla de ejecutar el entorno completo (Jupyter + Dashboard) es vía Docker:
 
-## 📑 Entregables Incluidos (Parte 5)
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/onlyG19/laboratorio2-geoinformatica-cambio-urbano.git
+    cd laboratorio2-geoinformatica-cambio-urbano
+    ```
 
-*   **Aplicación Streamlit funcional**: Dashboard integrado con mapas y gráficos.
-*   **Mapa Interactivo**: Capa coroplética de urbanización por cuadrantes de 500m.
-*   **Gráficos Dinámicos**: Trayectorias temporales de NDVI, NDBI, etc.
-*   **Comparador Visual**: Renderizado automático de rasters antes/después.
-*   **Descarga**: Botón de descarga para las estadísticas en formato CSV.
+2.  **Levantar el entorno:**
+    ```bash
+    docker-compose up -d
+    ```
+
+3.  **Accesos:**
+    *   **Dashboard:** [http://localhost:8501](http://localhost:8501)
+    *   **Jupyter Lab:** [http://localhost:8888](http://localhost:8888)
+
+---
+
+## 📊 Metodología de Análisis
+
+El flujo técnico sigue estos pilares fundamentales:
+
+1.  **Adquisición Programática:** Uso de API STAC para filtrar imágenes con nubosidad < 5%.
+2.  **Álgebra de Mapas:** Cálculo de índices biofísicos:
+    *   **NDVI:** Vigor de la vegetación.
+    *   **NDBI:** Respuesta espectral de superficies construidas.
+    *   **BSI:** Índice de suelo desnudo para filtrar áreas agrícolas.
+3.  **Detección Lógica de Cambios:** Algoritmo que identifica "Urbanización" cuando el NDBI cruza el umbral positivo y el NDVI desciende críticamente.
+4.  **Estadística Zonal:** Agregación de cambios en grillas de 500m para identificar polos de crecimiento industrial y residencial.
+
+---
+
+## 📑 Entregables y Funcionalidades
+
+### 📈 Dashboard Interactivo
+*   **Mapa Coroplético:** Visualización de la intensidad de urbanización (Ha) por cuadrantes.
+*   **Comparador Visual:** Herramienta "Antes vs Después" para validar cambios espectrales.
+*   **Línea de Tiempo:** Gráficos dinámicos de la evolución media de los índices.
+*   **Time-lapses:** Generación automática de GIFs de la expansión urbana.
+
+### 📄 Reporte e Información
+Se incluye una estructura de notebooks lista para ser exportada como informe técnico, cumpliendo con los requerimientos de la Facultad de Ingeniería de la USACH.
+
+---
+
+## 🤝 Autor
+*   **Byron Gracia** - *Geoinformática, Departamento de Ingeniería Informática, USACH.*
+
+---
+*Nota: Este proyecto fue desarrollado como parte del Laboratorio 2 del curso de Geoinformática, 2026.*
