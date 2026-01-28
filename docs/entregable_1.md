@@ -3,14 +3,16 @@
 Este documento cumple con los requisitos de la Parte 1 del Laboratorio de Detección de Cambios Urbanos.
 
 ## 1. Imágenes Seleccionadas
-Se han seleccionado 4 imágenes del sensor **Sentinel-2 (MSI)**, formato **L2A (Reflectancia de Superficie)** en formato .SAFE.
+Se han seleccionado 6 imágenes del sensor **Sentinel-2 (MSI)**, formato **L2A (Reflectancia de Superficie)** en formato .SAFE.
 
 | ID | Periodo | Sensor | Nubosidad (%) | Justificación |
 |---|---|---|---|---|
-| S2_2016 | Febrero 2016 | Sentinel-2A | < 1% | Imagen base histórica al inicio de la misión Sentinel-2. |
-| S2_2019 | Verano 2019 | Sentinel-2A | < 1% | Referencia intermedia para análisis de tendencias pre-pandemia. |
-| S2_2021 | Verano 2021 | Sentinel-2B | < 1% | Captura de expansión urbana durante el periodo 2019-2021. |
-| S2_2026 | Enero 2026 | Sentinel-2 | < 1% | Estado actual para cierre de serie temporal (10 años de análisis). |
+| BASE_2016 | Marzo 2016 | Sentinel-2A | < 1% | Imagen base histórica al inicio de la misión Sentinel-2. |
+| INTER_2017 | Noviembre 2017 | Sentinel-2B | < 1% | Captura del pico de vigor vegetal (Primavera). |
+| INTER_2019 | Mayo 2019 | Sentinel-2B | < 1% | Primer cruce positivo de NDBI: Inicio de expansión detectada. |
+| INTER_2021 | Marzo 2021 | Sentinel-2B | < 1% | Estabilización y consolidación de proyectos pre-existentes. |
+| REC_2023 | Octubre 2023 | Sentinel-2A | < 1% | Variación por humedad/suelo desnudo activo (Primavera). |
+| FINAL_2026 | Enero 2026 | Sentinel-2C | < 1% | Estado final: Densidad urbana consolidada (10 años). |
 
 ## 2. Metadatos de los Productos
 Los productos descargados corresponden a la colección **COPERNICUS/S2_SR_HARMONIZED** (Nivel 2A), lo que garantiza:
@@ -31,7 +33,7 @@ import pystac_client
 
 # Configuración de búsqueda STAC para San Bernardo
 BBOX = [-70.85, -33.67, -70.60, -33.50]
-YEARS = [2016, 2019, 2021, 2026]
+YEARS = [2016, 2017, 2019, 2021, 2023, 2026]
 
 # Búsqueda de productos L2A con < 5% de nubes
 # [Código documentado en scripts/download_sentinel.py]
