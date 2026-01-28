@@ -9,6 +9,16 @@ Este repositorio contiene un flujo de trabajo geoinformático avanzado para dete
 
 ---
 
+## 🎞️ Animaciones Temporales (Time-lapses)
+
+Visualización de la evolución rítmica de la comuna durante el periodo de estudio:
+
+| **Expansión Urbana (NDBI)** | **Vigor de Vegetación (NDVI)** |
+|:---:|:---:|
+| ![Evolución Urbana](outputs/figures/evolucion_urbana.gif) | ![Evolución Vegetación](outputs/figures/evolucion_vegetacion.gif) |
+
+---
+
 ## 🚀 Arquitectura del Proyecto
 
 El proyecto está organizado de forma modular para permitir tanto la ejecución guiada (Notebooks) como el procesamiento masivo (Scripts):
