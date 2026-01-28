@@ -59,6 +59,20 @@ El flujo técnico sigue estos pilares fundamentales:
 
 ---
 
+## 📦 Datos Originales (Raw Data)
+
+Las imágenes satelitales Sentinel-2 L2A utilizadas en este estudio fueron obtenidas desde el [Copernicus Data Space Browser](https://browser.dataspace.copernicus.eu). Debido a su tamaño (aprox. 1.2 GB c/u), estos archivos están excluidos del repositorio vía `.gitignore`.
+
+**Detalle de productos en `data/raw/`:**
+*   `S2A_MSIL2A_20160305...SAFE.zip` (Marzo 2016)
+*   `S2B_MSIL2A_20171110...SAFE.zip` (Noviembre 2017)
+*   `S2B_MSIL2A_20190514...SAFE.zip` (Mayo 2019)
+*   `S2B_MSIL2A_20210324...SAFE.zip` (Marzo 2021)
+*   `S2A_MSIL2A_20231015...SAFE.zip` (Octubre 2023)
+*   `S2C_MSIL2A_20260122...zip` (Enero 2026)
+
+---
+
 ## 📑 Entregables y Funcionalidades
 
 ### 📈 Dashboard Interactivo
